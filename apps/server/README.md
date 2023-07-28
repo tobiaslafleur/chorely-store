@@ -1,3 +1,3 @@
-## chorely-web
+## chorely-server
 
 TODO: write README.md
