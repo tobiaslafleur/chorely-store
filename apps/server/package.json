@@ -9,7 +9,14 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.12",
+    "@types/pg": "^8.10.2",
     "eslint-config-custom": "workspace:*",
-    "tsconfig": "workspace:*"
+    "tsconfig": "workspace:*",
+    "tsx": "^3.12.7"
+  },
+  "dependencies": {
+    "fastify": "^4.21.0",
+    "pg": "^8.11.1",
+    "zod": "^3.21.4"
   }
 }

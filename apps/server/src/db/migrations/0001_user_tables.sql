@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS users(
+	internal_id SERIAL,
+	id UUID UNIQUE NOT NULL DEFAULT GEN_RANDOM_UUID(),
+	email VARCHAR(255) UNIQUE NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(internal_id)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS users_uuid_index ON users(id);
+CREATE UNIQUE INDEX IF NOT EXISTS users_email_index ON users(LOWER(email));
+
+CREATE TABLE IF NOT EXISTS permissions(
+	id UUID UNIQUE NOT NULL DEFAULT GEN_RANDOM_UUID(),
+	permission VARCHAR(255) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS user_permissions(
+	user_id UUID NOT NULL,
+	permission_id UUID NOT NULL,
+	PRIMARY KEY(user_id, role),
+	CONSTRAINT fk_user_permissions_to_users FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+	CONSTRAINT fk_user_permissions_to_permissions FOREIGN KEY(role) REFERENCES permissions(id) ON DELETE CASCADE
+);
