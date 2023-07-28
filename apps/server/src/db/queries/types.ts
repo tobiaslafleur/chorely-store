@@ -9,3 +9,9 @@ export type User = {
 };
 
 export type InsertUser = Omit<User, 'password'>;
+export type SelectMultipleUsers = Omit<User, 'password'> & {
+  permissions: string[];
+};
+export type SelectUserById = Omit<User, 'password'> & {
+  permissions: string[];
+};
