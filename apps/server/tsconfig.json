@@ -1,0 +1,18 @@
+{
+  "extends": "tsconfig/base",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    },
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "ES6",
+    "outDir": "build",
+    "declaration": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}
