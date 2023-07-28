@@ -8,9 +8,7 @@ export function validatorCompiler({
   return (data: any) => {
     const parsed = schema.safeParse(data);
 
-    if (parsed.success) {
-      return true;
-    }
+    if (parsed.success) return true;
 
     const issues = parsed.error.issues.map((issue) => issue.message).join(', ');
 
