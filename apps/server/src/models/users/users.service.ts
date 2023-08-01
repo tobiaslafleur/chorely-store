@@ -1,10 +1,6 @@
 import db from '@/db';
-import {
-  InsertUser,
-  SelectMultipleUsers,
-  SelectUserById,
-  queries,
-} from '@/db/queries';
+import { queries } from '@/db/queries';
+import { InsertUser, SelectMultipleUsers, SelectUserById } from '@/db/types';
 import { CreateUser } from '@/models/users/users.schema';
 
 export async function createUser(input: Omit<CreateUser, 'confirm_password'>) {

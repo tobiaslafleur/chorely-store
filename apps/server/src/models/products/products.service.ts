@@ -1,11 +1,6 @@
 import db from '@/db';
-import {
-  Image,
-  Product,
-  SelectProductById,
-  SelectProducts,
-  queries,
-} from '@/db/queries';
+import { queries } from '@/db/queries';
+import { Image, Product, SelectProductById, SelectProducts } from '@/db/types';
 import { CreateProductInsert } from '@/models/products/products.schema';
 
 export async function createProduct(input: CreateProductInsert) {

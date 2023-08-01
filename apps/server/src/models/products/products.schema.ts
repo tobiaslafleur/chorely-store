@@ -1,4 +1,4 @@
-import { Prettify } from '@/db/queries/types';
+import { Prettify } from '@/db/types';
 import { ImageReturn } from '@/utils/upload/imageUpload';
 import { z } from 'zod';
 

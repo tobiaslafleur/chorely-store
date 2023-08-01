@@ -1,5 +1,5 @@
 import env from '@/utils/env';
-import { createFolders } from '@/utils/folders';
+import { createFolders } from '@/utils/upload/folders';
 import {
   checkDatabase,
   gracefulShutdown,

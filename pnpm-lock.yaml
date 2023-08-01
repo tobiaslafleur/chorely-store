@@ -29,6 +29,9 @@ importers:
       '@fastify/multipart':
         specifier: ^7.7.3
         version: 7.7.3
+      '@fastify/static':
+        specifier: ^6.10.2
+        version: 6.10.2
       argon2:
         specifier: ^0.30.3
         version: 0.30.3
