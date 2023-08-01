@@ -1,6 +1,6 @@
 import {
   createUserHandler,
-  getMultipleUsersHandler,
+  getUsersHandler,
   getUserByIdHandler,
 } from '@/models/users/users.controller';
 import {
@@ -9,7 +9,7 @@ import {
 } from '@/models/users/users.schema';
 import { FastifyInstance } from 'fastify';
 
-export default async function usersHandler(app: FastifyInstance) {
+export default async function usersRouteHandler(app: FastifyInstance) {
   app.post(
     '/',
     {
@@ -20,7 +20,7 @@ export default async function usersHandler(app: FastifyInstance) {
     createUserHandler
   );
 
-  app.get('/', getMultipleUsersHandler);
+  app.get('/', getUsersHandler);
 
   app.get(
     '/:id',

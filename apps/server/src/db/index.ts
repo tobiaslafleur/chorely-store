@@ -7,6 +7,8 @@ const pool = new Pool({
   database: env.PG_DATABASE,
   user: env.PG_USER,
   password: env.PG_PASSWORD,
+  connectionTimeoutMillis: 20000,
+  idleTimeoutMillis: 30000,
 });
 
 export default {

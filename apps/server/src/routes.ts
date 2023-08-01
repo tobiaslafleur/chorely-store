@@ -1,17 +1,19 @@
 import db from '@/db';
-import usersHandler from '@/models/users/users.route';
+import usersRouteHandler from '@/models/users/users.route';
+import productsRouteHandler from '@/models/products/products.route';
 import { FastifyInstance } from 'fastify';
 
 export default async function routeHandler(app: FastifyInstance) {
   app.get('/healthcheck', async (request, reply) => {
-    const health = await db.healthCheck();
+    const healthy = await db.healthCheck();
 
-    if (!health) {
+    if (!healthy) {
       return reply.code(500).send({ message: 'Postgres is not responding 🔥' });
     }
 
     return reply.code(200).send({ message: 'OK' });
   });
 
-  app.register(usersHandler, { prefix: '/users' });
+  app.register(usersRouteHandler, { prefix: '/users' });
+  app.register(productsRouteHandler, { prefix: '/products' });
 }

@@ -18,7 +18,7 @@ export async function createUser(input: Omit<CreateUser, 'confirm_password'>) {
   return rows[0];
 }
 
-export async function getMultipleUsers() {
+export async function getUsers() {
   const { rows } = await db.query<SelectMultipleUsers>({
     text: queries.users.selectMultipleUsers,
   });

@@ -3,7 +3,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import argon2 from 'argon2';
 import {
   createUser,
-  getMultipleUsers,
+  getUsers,
   getUserById,
 } from '@/models/users/users.service';
 import { DatabaseError } from 'pg';
@@ -31,12 +31,12 @@ export async function createUserHandler(
   }
 }
 
-export async function getMultipleUsersHandler(
+export async function getUsersHandler(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    const userList = await getMultipleUsers();
+    const userList = await getUsers();
 
     return reply.code(200).send(userList);
   } catch (error) {
@@ -50,6 +50,8 @@ export async function getUserByIdHandler(
 ) {
   try {
     const user = await getUserById(request.params.id);
+
+    if (!user) reply.code(404).send({ message: 'User does not exist' });
 
     return reply.code(200).send(user);
   } catch (error) {

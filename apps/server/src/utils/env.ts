@@ -6,8 +6,15 @@ const envSchema = z.object({
     .string({
       invalid_type_error: 'HOST must be of type string',
     })
-    .ip('HOST must be a valid ip adress')
-    .default('127.0.0.1'),
+    .refine(
+      (value) => {
+        return /^(\d{1,3}\.){3}\d{1,3}$/.test(value) || value === 'localhost';
+      },
+      {
+        message: 'HOST must be a valid IP address or "localhost"',
+      }
+    )
+    .default('localhost'),
   PORT: z.coerce
     .number({
       invalid_type_error: 'PORT must be of type number or string',

@@ -1,4 +1,5 @@
 import env from '@/utils/env';
+import { createFolders } from '@/utils/folders';
 import {
   checkDatabase,
   gracefulShutdown,
@@ -9,6 +10,7 @@ import { buildServer } from '@/utils/server';
 async function main() {
   const app = buildServer();
 
+  await createFolders();
   await checkDatabase(app);
   await registerSignals(app);
 
