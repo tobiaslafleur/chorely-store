@@ -1,16 +1,16 @@
-export const insertProduct = `
+export const insertProduct = /*sql*/ `
   INSERT INTO products(sku, name, description, price)
   VALUES($1, $2, $3, $4)
   RETURNING id, sku, name, description, price, created_at, updated_at
 `.replace(/\n/g, ' ');
 
-export const insertProductImages = `
+export const insertProductImages = /*sql*/ `
   INSERT INTO product_images(product_id, image_id, is_primary)
   VALUES($1, $2, $3)
   RETURNING product_id, image_id, is_primary
 `.replace(/\n/g, ' ');
 
-export const selectProducts = `
+export const selectProducts = /*sql*/ `
   SELECT 
     p.id,
     p.sku,
@@ -23,9 +23,9 @@ export const selectProducts = `
   FROM products p
   LEFT JOIN product_images pi ON pi.product_id = p.id AND pi.is_primary = true
   LEFT JOIN images i ON i.id = pi.image_id
-`;
+`.replace(/\n/g, ' ');
 
-export const selectProductById = `
+export const selectProductById = /*sql*/ `
   SELECT 
     p.id,
     p.sku,

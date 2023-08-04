@@ -16,15 +16,21 @@ export type User = {
 };
 
 export type InsertUser = Prettify<Omit<User, 'password'>>;
+
 export type SelectMultipleUsers = Prettify<
   Omit<User, 'password'> & {
     permissions: string[];
   }
 >;
+
 export type SelectUserById = Prettify<
   Omit<User, 'password'> & {
     permissions: string[];
   }
+>;
+
+export type SelectUserByEmailWithPassword = Prettify<
+  User & { permissions: string[] }
 >;
 
 /**
@@ -59,4 +65,13 @@ export type SelectProductById = Prettify<
 export type Image = {
   id: string;
   url: string;
+};
+
+/**
+ * Session types
+ */
+export type Session = {
+  id: string;
+  user_id: string;
+  agent: string;
 };

@@ -1,4 +1,4 @@
-import { FileUploadOptions, saveFile } from '@/utils/fileUpload';
+import { FileUploadOptions, saveFile } from '@/utils/upload/fileUpload';
 import fs from 'fs';
 
 type ImageUploadResult<T extends FileUploadOptions> = T extends
@@ -48,6 +48,7 @@ export async function handleImageUpload<T extends FileUploadOptions>(
   return fileArray as ImageUploadResult<T>;
 }
 
+//TODO: handle error when removing file
 export async function removeUploadedImages(images: ImageReturn[]) {
   for (const image of images) {
     const path = `./uploads/${image.url}`;

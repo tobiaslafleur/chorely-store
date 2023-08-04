@@ -43,6 +43,8 @@ const envSchema = z.object({
     invalid_type_error: 'PG_PASSWORD must be of type string',
     required_error: 'PG_PASSWORD is required',
   }),
+  JWT_PRIVATE_KEY: z.string(),
+  JWT_PUBLIC_KEY: z.string(),
 });
 
 const env = envSchema.parse(process.env);

@@ -1,7 +1,13 @@
 import db from '@/db';
 import { queries } from '@/db/queries';
-import { InsertUser, SelectMultipleUsers, SelectUserById } from '@/db/types';
+import {
+  InsertUser,
+  SelectMultipleUsers,
+  SelectUserByEmailWithPassword,
+  SelectUserById,
+} from '@/db/types';
 import { CreateUser } from '@/models/users/users.schema';
+import argon2 from 'argon2';
 
 export async function createUser(input: Omit<CreateUser, 'confirm_password'>) {
   const { email, password, first_name, last_name } = input;
@@ -29,4 +35,20 @@ export async function getUserById(id: string) {
   });
 
   return rows[0];
+}
+
+export async function getUserByEmailWithPassword(email: string) {
+  const { rows } = await db.query<SelectUserByEmailWithPassword>({
+    text: queries.users.selectUserByEmailWithPassword,
+    values: [email],
+  });
+
+  return rows[0];
+}
+
+export async function validatePassword(
+  password: string,
+  candidatePassword: string
+) {
+  return await argon2.verify(password, candidatePassword);
 }

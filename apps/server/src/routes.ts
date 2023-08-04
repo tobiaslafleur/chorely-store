@@ -1,6 +1,7 @@
 import db from '@/db';
 import usersRouteHandler from '@/models/users/users.route';
 import productsRouteHandler from '@/models/products/products.route';
+import sessionsRouteHandler from '@/models/sessions/sessions.route';
 import { FastifyInstance } from 'fastify';
 
 export default async function routeHandler(app: FastifyInstance) {
@@ -15,5 +16,6 @@ export default async function routeHandler(app: FastifyInstance) {
   });
 
   app.register(usersRouteHandler, { prefix: '/users' });
+  app.register(sessionsRouteHandler, { prefix: '/sessions' });
   app.register(productsRouteHandler, { prefix: '/products' });
 }
